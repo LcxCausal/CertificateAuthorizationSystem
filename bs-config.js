@@ -234,7 +234,7 @@ app.post('/findCertificateHashByUserAddressAndDatePost', function (req, res) {
 // Function: query certificate details by certificate hash.
 function queryCertificateDetailsByHash(certHash, connection, res) {
 
-  var queryString = "SELECT content FROM tb_certificate " + "WHERE certHash='" + certHash + "'";
+  var queryString = "SELECT userInfo, content, agencyInfo, awardDate FROM tb_user, tb_agency, (SELECT userAddress, agencyID, content, awardDate FROM tb_certificate WHERE certHash = '" + certHash + "') t WHERE tb_user.userAddress=t.userAddress AND tb_agency.agencyID=t.agencyID";
 
   connection.query(queryString, function (err, results) {
 
@@ -243,11 +243,11 @@ function queryCertificateDetailsByHash(certHash, connection, res) {
     var jsonResults = [];
 
     for (var i = 0; i < results.length; i++) {
-      jsonResults.push(JSON.parse('{ \"content\" : \"' + results[i].content + '\"}'));
+      jsonResults.push(JSON.parse('{ \"userInfo\" : \"' + results[i].userInfo + '\", \"content\" : \"' + results[i].content + '\", \"agencyInfo\":\"' + results[i].agencyInfo + '\", \"awardDate\":\"' + results[i].awardDate + '\"}'));
     }
 
     res.setHeader('Access-Control-Allow-Origin', '*');
-    res.json({ 'content': jsonResults });
+    res.json({ 'certDetails': jsonResults });
 
   });
 

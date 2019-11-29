@@ -112,22 +112,55 @@ App = {
             var title = $('<caption id="certCaption" style="height: 60px; background-color: #674b19; color: lavender; font-weight: bolder; font-size: 28px; text-align: center; line-height: 60px">所获证书列表</caption><tr style="width: 100%; height: 40px; background: transparent; color: #674b19; font-size: 20px"><th id="certHash" style="height: 30px; border: lavender 2px solid; width: 88%; font-size: 22px">证书HASH值</th><th id="certDetail" style="height: 30px; border: lavender 2px solid; width: 12%; font-size: 22px">查看详情</th></tr>');
             table.append(title);
 
-
+            var certificatesIndex = 0;
             result['certHash'].forEach(item => {
                 var row = $('<tr style="width: 100%; height: 40px; background: transparent; color: #674b19; font-size: 20px"></tr>');
 
-                var column0 = $('<th style="height: 30px; border: lavender 2px solid; width: 88%; font-size: 22px"></th>').text(item['certHash']);
+                var column0 = $('<th id="thCertHash' + certificatesIndex + '" style="height: 30px; border: lavender 2px solid; width: 88%; font-size: 22px"></th>').text(item['certHash']);
                 row.append(column0);
 
-                var column1 = $('<th style="height: 30px; border: lavender 2px solid; width: 12%; font-size: 22px; position: relative"><button class="btn_showDetails" style="width: 100%; height: 100%; position: absolute; top: 0; left: 0; font-size: 24px; background: transparent; border: none; font-weight: bolder; color: #674b19">>></button></th>');
+                var column1 = $('<th style="height: 30px; border: lavender 2px solid; width: 12%; font-size: 22px; position: relative"><button id="btn_showDetails' + certificatesIndex + '" class="btn_showDetails" style="width: 100%; height: 100%; position: absolute; top: 0; left: 0; font-size: 24px; background: transparent; border: none; font-weight: bolder; color: #674b19">>></button></th>');
                 row.append(column1);
 
 
                 table.append(row);
+
+                App.bindClickShowCertDetailsEvent(certificatesIndex);
+                certificatesIndex++;
             });
         })
-    }
+    },
 
+    bindCloseCertificateDetailsEvent: function () {
+        $(".close").click(function () {
+            $(".bg").fadeOut()
+            $("#detailInfo").fadeOut()
+        })
+    },
+
+    bindClickShowCertDetailsEvent: function (certificatesIndex) {
+        var btnShowDetailsId = '#btn_showDetails' + certificatesIndex;
+        $(document).on('click', btnShowDetailsId, App.handleClickShowCertDetails);
+    },
+
+    handleClickShowCertDetails: function () {
+        var certificatesIndex = this.id.slice(15);
+        var certHash = $("#thCertHash" + certificatesIndex)[0].innerText;
+        var url = App.serverHost + '/getCertificateDetailsByHash?certHash=' + certHash;
+
+        $.getJSON(url, function (result) {
+            var certificateDetals = result.certDetails[0];
+            $('#awarder')[0].innerText = certificateDetals.userInfo;
+            $('#certInfo')[0].innerText = certificateDetals.content;
+            $('#agency')[0].innerText = certificateDetals.agencyInfo;
+            $('#awardDate')[0].innerText = certificateDetals.awardDate;
+
+            $(".bg").fadeIn()
+            $("#detailInfo").fadeIn()
+
+            App.bindCloseCertificateDetailsEvent();
+        })
+    }
 };
 
 $(function () {
