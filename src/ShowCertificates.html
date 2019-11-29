@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Show Certificates Page</title>
+    <link href="css/ShowCertificates.css" rel="stylesheet">
+    <script src="js/histogram.js"></script>
+    <script src="js/jquery-1.12.4.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/web3.min.js"></script>
+    <script src="js/truffle-contract.js"></script>
+    <script src="js/cas_app.js"></script>
+    <script src="js/check_user_login.js"></script>
+</head>
+
+<body>
+    <h1>四川师范大学证书认证系统</h1>
+
+    <!--所获证书详情-->
+    <!-- <div id="ShowInfo"> -->
+
+    <!--查询条件-->
+    <select id="searchMode">
+        <option value="" default hidden>请选择查询方式</option>
+        <!--默认按照用户账号查询-->
+        <option value="byAgency">颁发机构</option>
+        <option value="byLevel">证书等级</option>
+    </select>
+
+    <select id="searchCondition">
+        <option value="" default hidden>请选择查询条件</option>
+    </select>
+
+    <button id="btn_searchBy">查询</button>
+
+    <!--<h2>所获证书</h2>-->
+    <table id="tb_getCerts">
+        <caption id="certCaption">所获证书列表</caption>
+        <tr>
+            <th id="certHash">证书HASH值</th>
+            <th id="certDetail">查看详情</th>
+        </tr>
+    </table>
+
+    <!-- </div> -->
+
+    <canvas id="barChart" height="400" width="600" style="margin:50px">
+        浏览器不支持canvas！
+    </canvas>
+
+    <button id="search" type="button">查询证书</button>
+    <div id="searchCap"></div>
+
+    <button id="logout" type="button">退出</button>
+
+
+
+</body>
+
+</html>

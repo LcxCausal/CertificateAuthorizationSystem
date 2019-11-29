@@ -1,0 +1,177 @@
+body{
+    width: 90%;
+    height: 900px;
+    opacity: 85%;
+    padding: 0;
+    margin: 0 auto;
+    background: linear-gradient(to top,lightsteelblue,lavender) no-repeat;
+    position: relative;
+}
+h1{
+    text-indent: 90px;
+    padding-top: 2%;
+    font-size: 48px;
+    font-family: "Arial Black";
+    font-weight: bolder;
+    color: #674b19;
+    border-bottom: lavender 3px solid;
+}
+
+#ShowInfo{
+     margin-left: 50%;
+     margin-top: 11%;
+     width: 49%;
+     height: 530px;
+     border: lavender 10px solid;
+     position: relative;
+ }
+
+h2{
+    font-size: 32px;
+    text-align: center;
+    font-family: "Arial Black";
+    color: #674b19;
+}
+#searchMode{
+    width: 15%;
+    height: 40px;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    color: #674b19;
+    font-size: 18px;
+    font-weight: bolder;
+    border: lavender 3px solid;
+    background-color: transparent;
+}
+#searchCondition{
+    width: 15%;
+    height: 40px;
+    position: absolute;
+    top: 25%;
+    left: 70%;
+    color: #674b19;
+    font-size: 18px;
+    font-weight: bolder;
+    border: lavender 3px solid;
+    background-color: transparent;
+}
+#btn_searchBy{
+    width: 5%;
+    height: 40px;
+    position: absolute;
+    top: 25%;
+    left: 93.5%;
+    color: #674b19;
+    font-size: 18px;
+    font-weight: bolder;
+    border: lavender 3px solid;
+    background-color: transparent;
+}
+
+#tb_getCerts{
+    width: 48%;
+    height: 64%;
+    top: 33%;
+    left: 50%;
+    position: absolute;
+    overflow-y:scroll;
+    overflow: hidden;
+    border: lavender 6px solid;
+    display: block;
+}
+
+#certCaption{
+    height: 60px;
+    width: 100%;
+    background-color: #674b19;
+    color: lavender;
+    font-weight: bolder;
+    font-size: 28px;
+    text-align: center;
+    line-height: 60px;
+}
+
+tr{
+    width: 100%;
+    height: 40px;
+    background: transparent;
+    color: #674b19;
+    font-size: 20px;
+}
+
+th{
+    height: 30px;
+    border: lavender 2px solid;
+    text-align: center;
+}
+
+#certHash{
+    width: 88%;
+    height: 40px;
+    font-size: 22px;
+}
+#certDetail{
+    width: 12%;
+    height: 40px;
+    font-size: 22px;
+}
+.btn_showDetails{
+    font-size: 24px;
+    background: transparent;
+    font-weight: bolder;
+    color: #674b19;
+}
+/*柱状图画布*/
+#barChart{
+    position: absolute;
+    left: 1%;
+    top: 15%;
+}
+
+#search{
+    width: 600px;
+    margin-top: 10px;
+    height: 60px;
+    position: absolute;
+    left: 5%;
+    top: 70%;
+    background-color: lightsteelblue;
+    border-radius: 0;
+    border: 1px solid #674b19;
+    border-left: none;
+    font-size: 30px;
+    box-shadow: 1px 1px 3px #674b19;
+    color: #674b19;
+}
+#searchCap{
+    left: 40.5%;
+    top: 69.5%;
+    position: absolute;
+    border: transparent 45px solid;
+    border-left-color: #674b19;
+}
+
+#search:hover{
+    color: lavender;
+    /*background-color: #674b19;*/
+}
+#logout{
+    width: 90px;
+    height: 50px;
+    position: absolute;
+    left: 95%;
+    top: 14%;
+    font-size: 20px;
+    background: transparent;
+    border: none;
+    box-shadow: 1px 1px 3px #674b19;
+    color: #674b19;
+    font-weight: bolder;
+}
+#logout:hover{
+    border: 3px solid #674b19;
+    box-shadow: 1px 1px 3px #674b19;
+    font-size: 26px;
+    border-radius: 3px;
+}

@@ -1,0 +1,264 @@
+body{
+    width: 90%;
+    height: 900px;
+    opacity: 85%;
+    padding: 0;
+    margin: 0 auto;
+    background: linear-gradient(to top,lightsteelblue,lavender) no-repeat;
+    position: relative;
+}
+h1{
+    text-indent: 90px;
+    padding-top: 2%;
+    font-size: 48px;
+    font-family: "Arial Black";
+    font-weight: bolder;
+    color: #674b19;
+    border-bottom: lavender 3px solid;
+}
+#EntryInfo{
+     margin-left: 50%;
+     margin-top: 8%;
+     width: 49%;
+     height: 490px;
+     border: lavender 10px solid;
+     position: relative;
+ }
+h2{
+    font-size: 32px;
+    text-align: center;
+    font-family: "Arial Black";
+    color: #674b19;
+}
+input{
+    position: absolute;
+    height: 25px;
+    width: 20%;
+    border-radius: 5px;
+    border: #818285 2px solid;
+    background: lavender;
+    font-size: 18px;
+}
+label{
+    position: absolute;
+    font-size: 22px;
+    color: dimgrey;
+    font-weight: bold;
+}
+textarea{
+    position: absolute;
+    width: 65%;
+    height: 70px;
+    border-radius: 15px;
+    border: #818285 2px solid;
+    background: lavender;
+    font-size: 18px;
+}
+select{
+    width: 65%;
+    height: 28px;
+    border-radius: 5px;
+    border: #818285 2px solid;
+    background: lavender;
+}
+#certID{
+    top: 20%;
+    left: 16%;
+    width: 15%;
+}
+#inputCertID{
+    top: 20%;
+    left: 38%;
+    width: 40%;
+}
+#winner{
+    top: 30%;
+    left: 16%;
+    width: 18%;
+}
+#inputWinnerAddress{
+    top: 30%;
+    left: 38%;
+    width: 40%;
+}
+#awardAgent{
+    top: 40%;
+    left: 16%;
+    width: 15%;
+}
+#selectAwardAgent{
+    position: absolute;
+    font-size: 18px;
+    color: darkslategrey;
+    top: 40%;
+    left: 38%;
+    width: 40.5%;
+}
+#certLevel{
+    top: 50%;
+    left: 16%;
+    width: 15%;
+}
+#selectCertLevel{
+    position: absolute;
+    font-size: 18px;
+    color: darkslategrey;
+    top: 50%;
+    left: 38%;
+    width: 40.5%;
+}
+#awardDate{
+    top: 60%;
+    left: 16%;
+    width: 15%;
+}
+#chooseAwardDate{
+    top: 60%;
+    left: 38%;
+    width: 40%;
+}
+#detailInfo{
+    top: 70%;
+    left: 16%;
+    width: 15%;
+}
+#inputDetailInfo{
+    top: 70%;
+    left: 38%;
+    width: 40%;
+}
+button{
+    width: 15%;
+    height: 10%;
+    font-size: 22px;
+    font-weight: bolder;
+    color: #674b19;
+    border: lavender 3px solid;
+    position: absolute;
+    border-radius: 10px;
+    font-family: "Arial Black";
+    background: lightsteelblue;
+}
+#cancel{
+    left: 19%;
+    top: 110%;
+}
+#commit{
+    left: 63%;
+    top: 110%;
+}
+
+/*饼状图画布*/
+#chartDiv{
+    margin: 50px;
+    width: 600px;
+    height: 400px;
+    position: absolute;
+    left: 3%;
+    top: 15%;
+    /*box-shadow: 1px 1px 3px lightsteelblue;*/
+}
+#pieChart{
+    /*border: 1px solid lavender;*/
+}
+#entry{
+    width: 600px;
+    margin-top: 10px;
+    height: 60px;
+    position: absolute;
+    left: 5%;
+    top: 65%;
+    /*background-color: #c4d0e8;*/
+    background-color: lightsteelblue;
+    border-radius: 0;
+    border: 1px solid #674b19;
+    border-left: none;
+    font-size: 30px;
+    box-shadow: 1px 1px 3px #674b19;
+    color: #674b19;
+}
+#entryCap{
+    left: 40%;
+    top: 64.5%;
+    position: absolute;
+    border: transparent 45px solid;
+    border-left-color: #674b19;
+
+}
+#search{
+    width: 600px;
+    margin-top: 10px;
+    height: 60px;
+    position: absolute;
+    left: 5%;
+    top: 75%;
+    background-color: lightsteelblue;
+    border-radius: 0;
+    border: 1px solid #674b19;
+    border-left: none;
+    font-size: 30px;
+    box-shadow: 1px 1px 3px #674b19;
+    color: #674b19;
+}
+#searchCap{
+    left: 40%;
+    top: 74.5%;
+    position: absolute;
+    border: transparent 45px solid;
+    border-left-color: #674b19;
+}
+button:hover{
+    /*color: lavender;*/
+    border: 3px solid #674b19;
+    box-shadow: 1px 1px 3px #674b19;
+    font-size: 26px;
+}
+#entry:hover{
+    color: lavender;
+}
+#search:hover{
+    color: lavender;
+    /*background-color: #674b19;*/
+}
+#logout{
+    width: 90px;
+    height: 50px;
+    position: absolute;
+    left: 95%;
+    top: 14%;
+    background: transparent;
+    border: none;
+    box-shadow: 1px 1px 3px #674b19;
+}
+
+tr{
+    width: 100%;
+    height: 40px;
+    background: transparent;
+    color: #674b19;
+    font-size: 20px;
+}
+
+th{
+    height: 30px;
+    border: lavender 2px solid;
+}
+
+#tb_getCerts{
+    margin-left: 50%;
+    margin-top: 9%;
+    width: 49%;
+    height: 490px;
+    border: lavender 10px solid;
+    position: relative;
+}
+
+#certCaption{
+    height: 60px;
+    background-color: #674b19;
+    color: lavender;
+    font-weight: bolder;
+    font-size: 28px;
+    text-align: center;
+    line-height: 60px;
+}
