@@ -113,12 +113,13 @@ sudo cp /usr/local/bin/node /usr/sbin/
 
 ```
 sudo apt install npm
-npm install -g truffle
+sudo npm install -g truffle
 ```
 
 ### 6. 安装 **`ganache`**
 
 ```
+cd ~
 wget https://github.com/trufflesuite/ganache/releases/download/v1.1.0/ganache-1.1.0-x86_64.AppImage
 sudo chmod +x ganache-1.1.0-x86_64.AppImage
 ./ganache-1.1.0-x86_64.AppImage
@@ -127,16 +128,22 @@ sudo chmod +x ganache-1.1.0-x86_64.AppImage
 ### 7. 安装 **`Solidity`**
 
 ```
-apt install build-essential checkinstall zlib1g-dev
-apt install openssl libssl-dev
-apt install cmake
-apt install libboost-all-dev
+sudo apt install build-essential checkinstall zlib1g-dev
+sudo apt install openssl libssl-dev
+sudo apt install cmake
+sudo apt install libboost-all-dev
 git clone --recursive https://github.com/ethereum/solidity.git
-cd solidity/
+cd solidity
 mkdir build
 cd build
 cmake .. && make
 sudo make install
+```
+
+### 8. 安装 **`mysql`**
+
+```
+sudo apt install mysql
 ```
 
 ## 项目编译运行
@@ -145,7 +152,7 @@ sudo make install
 
 ```
 wget https://github.com/LcxCausal/CertificateAuthorizationSystem/archive/develop.zip
-unzip -qq CertificateAuthorizationSystem-develop.zip
+unzip -qq develop.zip
 mv CertificateAuthorizationSystem-develop CertificateAuthorizationSystem
 ```
 
@@ -153,6 +160,7 @@ mv CertificateAuthorizationSystem-develop CertificateAuthorizationSystem
 
 ```
 cd CertificateAuthorizationSystem
+npm install
 sudo truffle compile
 sudo truffle migrate
 ```
@@ -160,7 +168,6 @@ sudo truffle migrate
 ### 3. 项目运行
 
 ```
-npm install
 npm run dev
 ```
 
