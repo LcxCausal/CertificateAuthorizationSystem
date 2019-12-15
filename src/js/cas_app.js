@@ -1,6 +1,6 @@
 
 App = {
-    serverHost: 'http://192.168.1.100:8080',
+    serverHost: 'http://192.168.0.103:8080',
     web3Provider: null,
     contracts: {},
 
@@ -19,7 +19,7 @@ App = {
         }
         // If no injected web3 instance is detected, fall back to Ganache
         else {
-            App.web3Provider = new Web3.providers.HttpProvider('http://192.168.1.100:7545');
+            App.web3Provider = new Web3.providers.HttpProvider('http://192.168.0.103:7545');
         }
         web3 = new Web3(App.web3Provider);
 

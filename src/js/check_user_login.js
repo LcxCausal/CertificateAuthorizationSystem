@@ -20,7 +20,7 @@ LoginChecker = {
 
     // Jump to next page by userAddress.
     jumpToNextPage: async function (userAddress) {
-        var baseUrl = 'http://192.168.1.100:8080/queryUserLevelByUserAddress?userAddress=';
+        var baseUrl = 'http://192.168.0.103:8080/queryUserLevelByUserAddress?userAddress=';
         var url = baseUrl + userAddress;
 
         $.getJSON(url, function (result) {

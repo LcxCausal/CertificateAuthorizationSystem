@@ -196,7 +196,7 @@ bind-address = 0.0.0.0
 sudo /etc/init.d/mysql restart
 ```
 
-+ **Create database by `blockchain-mysql-DB.txt`**
++ **Create database by `CAS.sql`**
 
 ## 项目编译运行
 
@@ -215,8 +215,10 @@ mv CertificateAuthorizationSystem-develop CertificateAuthorizationSystem
 cd CertificateAuthorizationSystem
 npm install
 sudo truffle compile
-sudo truffle migrate
+sudo truffle migrate --reset
 ```
+
+![truffle migrate successfully](truffle_migrate_successfully.png)
 
 ### 3. 项目运行
 
