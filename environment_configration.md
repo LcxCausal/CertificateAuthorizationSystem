@@ -205,6 +205,7 @@ sudo /etc/init.d/mysql restart
 ```
 wget https://github.com/LcxCausal/CertificateAuthorizationSystem/archive/develop.zip
 unzip -qq develop.zip
+rm -r develop.zip
 mv CertificateAuthorizationSystem-develop CertificateAuthorizationSystem
 ```
 
