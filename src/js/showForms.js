@@ -1,9 +1,28 @@
 Forms = {
     web3Provider: null,
     contracts: {},
+    testChainHost: 'http://127.0.0.1:7545',
 
-    initWeb3Provider: function () {
+    initWeb3Provider: async function () {
         Forms.web3Provider = window.ethereum;
+        try {
+            // Request account access
+            await window.ethereum.enable();
+        } catch (error) {
+            // User denied account access...
+            console.error("User denied account access")
+        }
+
+        // Legacy dapp browsers...
+        if (window.web3) {
+            App.web3Provider = window.web3.currentProvider;
+        }
+        // If no injected web3 instance is detected, fall back to Ganache
+        else {
+            App.web3Provider = new Web3.providers.HttpProvider(Forms.testChainHost);
+        }
+        web3 = new Web3(App.web3Provider);
+
         Forms.initContract();
     },
 

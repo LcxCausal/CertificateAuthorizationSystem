@@ -1,4 +1,6 @@
 LoginChecker = {
+    hostServer: 'http://192.168.0.103:8080',
+
     // Login.
     login: async function () {
         var userAddress = await LoginChecker.getUserAddress();
@@ -20,7 +22,7 @@ LoginChecker = {
 
     // Jump to next page by userAddress.
     jumpToNextPage: async function (userAddress) {
-        var baseUrl = 'http://192.168.0.103:8080/queryUserLevelByUserAddress?userAddress=';
+        var baseUrl = LoginChecker.hostServer + '/queryUserLevelByUserAddress?userAddress=';
         var url = baseUrl + userAddress;
 
         $.getJSON(url, function (result) {
