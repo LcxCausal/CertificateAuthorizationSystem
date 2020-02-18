@@ -548,7 +548,7 @@ var server = app.listen(8080, hostIP, function () {
 
 module.exports = {
   "server": {
-    "baseDir": "src",
+    "baseDir": ["./src", "./build/contracts"],
     "routes": {
       "/node_modules": "node_modules"
     },

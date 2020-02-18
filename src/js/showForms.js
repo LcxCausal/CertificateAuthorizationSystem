@@ -151,12 +151,18 @@ Forms = {
                 console.log(error);
             }
             var account = accounts[0];
+
+            // TODO: get recorderLevel value from DB by account.
+            var recorderLevel = 1;
+
             //create the contact instance
             Forms.contracts.Commission.deployed().then(function (instance) {
                 commissionInstance = instance;
-                //send transaction to get the pet
-                return commissionInstance.commit(0, { from: account });
+                
+                //send transaction to entry certificate information by recorderLevel.
+                return commissionInstance.commit(recorderLevel, { from: account });
             }).then(function (result) {
+                // TODO: entry certificate information into DB.
                 return Forms.showCommitSuccessful();
             }).catch(function (err) {
                 console.log(err.message);
