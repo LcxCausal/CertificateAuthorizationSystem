@@ -5,6 +5,7 @@ Forms = {
 
     initWeb3Provider: async function () {
         Forms.web3Provider = window.ethereum;
+
         try {
             // Request account access
             await window.ethereum.enable();
@@ -21,8 +22,8 @@ Forms = {
         else {
             App.web3Provider = new Web3.providers.HttpProvider(Forms.testChainHost);
         }
-        web3 = new Web3(App.web3Provider);
 
+        web3 = new Web3(App.web3Provider);
         Forms.initContract();
     },
 
@@ -60,11 +61,11 @@ Forms = {
     initEntryForms: function () {
         var entryInfo = $('<div id=\'EntryInfo\'><div>');
         entryInfo.append($('<h2>证书详细信息</h2><label id="certID" for="certID">证书ID:</label><input type="text" id="inputCertID" placeholder="please input cert ID"><label id="winner" for="winner">获奖者地址:</label><input type="text" id="inputWinnerAddress"  placeholder="please input the winner address"><label id="awardAgent" for="awardAgent">颁发机构: </label><select id="selectAwardAgent"><option value="provinceLevelAgent">省级教育部</option><option value="municipalLevelAgent">市级教育部</option><option value="countyLevelAgent">县级教育部</option></select><label id="certLevel" for="certLevel">证书等级: </label><select id="selectCertLevel"><option value="provinceLevel">省级</option><option value="municipalLevel">市级</option><option value="countyLevel">县级</option></select><label id="awardDatel" for="awardDatel">颁发日期: </label><input type="date" id="chooseAwardDate" style="font-size: 18px; color: darkslategrey"><label id="detailInfol" for="detailInfo">详细信息: </label><textarea id="inputDetailInfo" type="text" placeholder="please input cert\'s detail information"></textarea><button id="cancel" type="button">取消</button><button id="commit" type="button">提交</button>'));
+
         $('body').append(entryInfo);
-
         Forms.resetSelectAwardAgentValues();
-        $('#chooseAwardDate')[0].value = new Date().toISOString().slice(0, 10);
 
+        $('#chooseAwardDate')[0].value = new Date().toISOString().slice(0, 10);
         Forms.bindChangeAgencySelectValueEvent();
         Forms.bindClickCancelButtonEvent();
         Forms.bindClickCommitButtonEvent();
@@ -150,23 +151,33 @@ Forms = {
             if (error) {
                 console.log(error);
             }
+
+            // get the recorder level.
             var account = accounts[0];
+            var url = App.serverHost + '/queryUserLevelByUserAddress?userAddress=' + account;
+            $.getJSON(url, function (result) {
+                var recorderLevel = result.userLevel[0].userLevel;
 
-            // TODO: get recorderLevel value from DB by account.
-            var recorderLevel = 1;
-
-            //create the contact instance
-            Forms.contracts.Commission.deployed().then(function (instance) {
-                commissionInstance = instance;
-                
-                //send transaction to entry certificate information by recorderLevel.
-                return commissionInstance.commit(recorderLevel, { from: account });
-            }).then(function (result) {
-                // TODO: entry certificate information into DB.
-                return Forms.showCommitSuccessful();
-            }).catch(function (err) {
-                console.log(err.message);
-            });
+                // create the contact instance
+                Forms.contracts.Commission.deployed().then(function (instance) {
+                    commissionInstance = instance;
+                    //send transaction to entry certificate information by recorderLevel.
+                    return commissionInstance.commit(recorderLevel, { from: account });
+                }).then(function (result) {
+                    // entry certificate information into DB.
+                    var url = App.serverHost + '/addCertificate?certID=' + certId + '&userAddress=' + winner + '&agencyID=' + awardAgent + '&levelID=' + certLevel + '&awardDate=' + awardDate + '&content=' + detailInfo + '&recorderAddress=' + account;
+                    $.getJSON(url, function (result) {
+                        if (result.OkPacket[0].affectedRows > 0) {
+                            Forms.handleClickCancelButton();
+                            return Forms.showCommitSuccessful();
+                        } else {
+                            return Forms.showCommitFalied();
+                        }
+                    })
+                }).catch(function (err) {
+                    console.log(err.message);
+                });
+            })
         });
     },
 
@@ -174,13 +185,20 @@ Forms = {
         alert("Commit successfully!");
     },
 
+    showCommitFalied: function () {
+        alert("Commit falied!");
+    },
+
     initQueryForms: function () {
         var queryInfo = $('<table id=\'tb_getCerts\' style="width: 48%; height: 64%; position: absolute; text-align: center; overflow-y:scroll; overflow: hidden"><caption id="certCaption">所获证书列表</caption><tr><th id="certHash">证书HASH值</th><th id="certDetail">查看详情</th></tr></table>');
         $('body').append(queryInfo);
+
         var searchMode = $('<select id= \'searchMode\' style="width: 15%; height: 40px; position: absolute; top: 25%; left: 50%; color: #674b19; font-size: 18px; font-weight: bolder; border: lavender 3px solid; background-color: transparent"><option default hidden>请选择查询方式</option><option value="byAgency">颁发机构</option><option value="byLevel">证书等级</option>');
         $('body').append(searchMode);
+
         var searchCondition = $('<select id= \'searchCondition\' style="width: 15%; height: 40px; position: absolute; top: 25%; left: 70%; color: #674b19; font-size: 18px; font-weight: bolder; border: lavender 3px solid; background-color: transparent"><option default hidden>请选择查询条件</option></select>');
         $('body').append(searchCondition);
+
         var searchBtn = $('<button id=\'btn_searchBy\' style="width: 5%; height: 40px; position: absolute; top: 25%; left: 94%; color: #674b19; font-size: 18px; font-weight: bolder; border: lavender 3px solid; background-color: transparent">查询</button>');
         $('body').append(searchBtn);
     },
